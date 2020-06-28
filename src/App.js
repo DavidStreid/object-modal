@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './modal-container.css';
-import ModalContainer from "./modal-container";
+import ModalContainer, {sendUpdate} from "./modal-container";
 import {Subject} from "rxjs";
 
 function App() {
@@ -14,10 +14,9 @@ function App() {
         <div className="App">
             <ModalContainer modalUpdater={modalUpdater}></ModalContainer>
             <header className="App-header">
-                <button onClick={() => setModalUpdate({msg: 'hey', type: 'MODAL_ERROR', delay: 1000})}>hey</button>
-                <button onClick={() => setModalUpdate({msg: 'ho', type: 'MODAL_ERROR', delay: 2000})}>ho</button>
-                <button onClick={() => setModalUpdate({msg: 'hello', type: 'MODAL_ERROR', delay: 3000})}>hello</button>
-
+                <button onClick={() => sendUpdate(modalUpdater, 'hey', 'MODAL_ERROR', 1000000)}>hey</button>
+                <button onClick={() => sendUpdate(modalUpdater, 'ho', 'MODAL_ERROR', 2000)}>ho</button>
+                <button onClick={() => sendUpdate(modalUpdater, 'hello', 'MODAL_ERROR', 3000)}>hello</button>
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
                 </p>

@@ -81,12 +81,14 @@
 }
 .close:hover {
   opacity: 1;
+  cursor: pointer;
 }
 .close:before, .close:after {
   position: absolute;
-  left: 15px;
+  left: 13px;
+  top: 0px;
   content: ' ';
-  height: 33px;
+  height: 29px;
   width: 2px;
   background-color: #333;
 }

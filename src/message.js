@@ -1,12 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {MODAL_ERROR, MODAL_SUCCESS, MODAL_UPDATE} from "./modal-container";
 
-export const MODAL_ERROR = 'MODAL_ERROR';
-export const MODAL_SUCCESS = 'MODAL_SUCCESS';
-export const MODAL_UPDATE = 'MODAL_UPDATE';
+/**
+ * Returns a valid modal type
+ *
+ * @param type
+ * @returns {string|*}
+ */
+export function parseType(type) {
+    const MODAL_TYPES = [MODAL_UPDATE, MODAL_SUCCESS, MODAL_ERROR];
+    for(const mt of MODAL_TYPES){
+        if(mt === type) return type;
+    }
+    console.error(`Couldn't read modal type: ${type}. Using update type - ${MODAL_UPDATE}`);
+    return MODAL_UPDATE;
+}
 
 function Message({update, onClose}) {
-    const type = update.type || 'ERROR';
+    const type = parseType(update.type);
     const msg = update.msg;
     const key = msg;
 
@@ -31,7 +43,9 @@ function Message({update, onClose}) {
     }
     return <div className={modalClass} key={key}>
         <div className={"close-container"}>
-            <a href="#" className="close" onClick={onClose}></a>
+            <button className="close" onClick={onClose}>
+                <a href="#"></a>
+            </button>
         </div>
         <p className="word-break">{msg}</p>
     </div>

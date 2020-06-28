@@ -1,6 +1,6 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useLayoutEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import Message from "./message";
+import Message, {parseType} from "./message";
 
 export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';
@@ -27,6 +27,9 @@ function ModalContainer({modalUpdater}) {
   // Immediately subscribe prior to mounting
   useLayoutEffect(()=> {
     modalUpdater.subscribe(formatUpdate);
+    return function cleanup() {
+      modalUpdater.unsubscribe();
+    };
   },[]);
 
 
@@ -39,7 +42,7 @@ function ModalContainer({modalUpdater}) {
 
   const shouldDisplay = Object.keys(queue).length > 0;
   if(!shouldDisplay) {
-    return <div></div>
+    return <div data-testid="no-modal"></div>
   }
 
   // Render all the modals inside a container
@@ -54,8 +57,23 @@ function ModalContainer({modalUpdater}) {
   </div>);
 }
 
+/**
+ * Sends update on subject, which should be passed to the ModalContainer
+ *
+ * @param subject
+ * @param msg
+ * @param inputType
+ * @param delay
+ */
+export function sendUpdate(subject, msg, inputType = MODAL_UPDATE, delay = 1000) {
+  const type = parseType(inputType);
+  if(isNaN(delay)){
+    throw new Error("Delay is not a number");
+  }
+  const update = { msg, type, delay };
+  subject.next(update);
+};
 export default ModalContainer;
-
 ModalContainer.propTypes = {
   modalUpdater: PropTypes.object  // Subject
 };
