@@ -1,8 +1,8 @@
 import React from 'react';
 import {act, render, fireEvent, waitForElementToBeRemoved} from '@testing-library/react';
 import ModalContainer, {sendUpdate} from './modal-container';
-import {Subject} from "rxjs";
-import {MODAL_UPDATE} from "./message";
+import {Subject} from 'rxjs';
+import {MODAL_UPDATE} from './message';
 
 let subj;
 beforeEach(() => {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './modal-container.css';
-import ModalContainer, {sendUpdate} from "./modal-container";
-import {Subject} from "rxjs";
+import ModalContainer, {sendUpdate} from './modal-container';
+import {Subject} from 'rxjs';
 
 function App() {
     const setModalUpdate = (update) => {

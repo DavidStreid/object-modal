@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {MODAL_ERROR, MODAL_SUCCESS, MODAL_UPDATE} from "./modal-container";
+import {MODAL_ERROR, MODAL_SUCCESS, MODAL_UPDATE} from './modal-container';
 
 /**
  * Returns a valid modal type
@@ -42,13 +42,13 @@ function Message({update, onClose}) {
         return <div key={key}></div>;
     }
     return <div className={modalClass} key={key}>
-        <div className={"close-container"}>
+        <div className={'close-container'}>
             <button className="close" onClick={onClose}>
                 <a href="#"></a>
             </button>
         </div>
         <p className="word-break">{msg}</p>
-    </div>
+    </div>;
 }
 
 export default Message;

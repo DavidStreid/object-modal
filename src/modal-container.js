@@ -1,6 +1,6 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import Message, {parseType} from "./message";
+import Message, {parseType} from './message';
 
 export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';
@@ -30,7 +30,7 @@ function ModalContainer({modalUpdater}) {
     return function cleanup() {
       modalUpdater.unsubscribe();
     };
-  },[]);
+  },[modalUpdater]);
 
 
   const closeModal = (msg) => {
@@ -42,17 +42,17 @@ function ModalContainer({modalUpdater}) {
 
   const shouldDisplay = Object.keys(queue).length > 0;
   if(!shouldDisplay) {
-    return <div data-testid="no-modal"></div>
+    return <div data-testid="no-modal"></div>;
   }
 
   // Render all the modals inside a container
-  return (<div className={"modal-container"}>
+  return (<div className={'modal-container'}>
     { Object.keys(queue).map( (updateMsg) => {
       const viewUpdate = queue[updateMsg];
       const key = `${updateMsg}-${queue[updateMsg].type}`;
       return <Message key={key}
                       update={{...viewUpdate}}
-                      onClose={() => closeModal(updateMsg)}></Message>
+                      onClose={() => closeModal(updateMsg)}></Message>;
     })}
   </div>);
 }
@@ -68,7 +68,7 @@ function ModalContainer({modalUpdater}) {
 export function sendUpdate(subject, msg, inputType = MODAL_UPDATE, delay = 1000) {
   const type = parseType(inputType);
   if(isNaN(delay)){
-    throw new Error("Delay is not a number");
+    throw new Error('Delay is not a number');
   }
   const update = { msg, type, delay };
   subject.next(update);
