@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
-import './Modal.css';
-import Modal from "./Modal";
+import './modal-container.css';
+import ModalContainer from "./modal-container";
+import {Subject} from "rxjs";
 
 function App() {
-    const [modalUpdate, setModalUpdate] = useState({
-        msg: 'hi',
-        type: 'MODAL_ERROR',
-        delay: 4000
-    });
+    const setModalUpdate = (update) => {
+        modalUpdater.next(update);
+    };
+
+    const [modalUpdater, setModalUpdater] = useState(new Subject());
 
     return (
         <div className="App">
-            <Modal update={modalUpdate}></Modal>
+            <ModalContainer modalUpdater={modalUpdater}></ModalContainer>
             <header className="App-header">
-                <button onClick={() => setModalUpdate({msg: 'hey', type: 'MODAL_ERROR', delay: 4000})}>hey</button>
-                <button onClick={() => setModalUpdate({msg: 'ho', type: 'MODAL_ERROR', delay: 4000})}>ho</button>
-                <button onClick={() => setModalUpdate({msg: 'hello', type: 'MODAL_ERROR', delay: 4000})}>hello</button>
+                <button onClick={() => setModalUpdate({msg: 'hey', type: 'MODAL_ERROR', delay: 1000})}>hey</button>
+                <button onClick={() => setModalUpdate({msg: 'ho', type: 'MODAL_ERROR', delay: 2000})}>ho</button>
+                <button onClick={() => setModalUpdate({msg: 'hello', type: 'MODAL_ERROR', delay: 3000})}>hello</button>
 
                 <p>
                     Edit <code>src/App.js</code> and save to reload.

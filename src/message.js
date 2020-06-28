@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';
 export const MODAL_UPDATE = 'MODAL_UPDATE';
 
-function Message({update}) {
-    const [closed, setClosed] = useState(false);
-
+function Message({update, onClose}) {
     const type = update.type || 'ERROR';
     const msg = update.msg;
     const key = msg;
@@ -27,14 +25,13 @@ function Message({update}) {
             throw new Error('Invalid modal update');
     }
 
-    if(closed){
-        console.log('closed');
+    if(update.closed){
         // User closed modal via onClick
         return <div key={key}></div>;
     }
     return <div className={modalClass} key={key}>
         <div className={"close-container"}>
-            <a href="#" className="close" onClick={() => setClosed(true)}></a>
+            <a href="#" className="close" onClick={onClose}></a>
         </div>
         <p className="word-break">{msg}</p>
     </div>
