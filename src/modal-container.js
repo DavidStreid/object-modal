@@ -1,6 +1,7 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import Message, {parseType} from './message';
+import './modal-container.css';
 
 export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';

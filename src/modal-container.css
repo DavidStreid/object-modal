@@ -1,44 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* MODAL */
 .modal-container {
   position: fixed;
   left: 50%;
@@ -46,24 +5,27 @@
   z-index: 2;
   transform: translate(-50%,0%);
 }
-.modal {
+.object-modal {
   width: 500px;
   height: auto;
   top: 0%;
-  margin: auto;
-  padding: 5px 20px;
-  margin-bottom: 3px;
+  margin: auto auto 10px auto;
+  padding: 30px 0px 10px;
   text-align: center;
   border-radius: 5px;
+  position: relative;
+}
+.modal-text-container {
+  padding: 0px 30px 0px 20px;
 }
 .modal-success {
-  background: #b3e6cc;
+  background: #d2edc4;
 }
 .modal-update {
-  background: #e6ffff;
+  background: #8fc7e8;
 }
 .modal-fail {
-  background: #ffb3b3;
+  background: #efb3cb;
 }
 .close {
   position: absolute;
@@ -74,10 +36,11 @@
   opacity: 0.3;
 }
 .close-container {
-  position: relative;
+  position: absolute;
   min-height: 20px;
   width: 40px;
-  float: right;
+  top: 10px;
+  right: 10px;
 }
 .close:hover {
   opacity: 1;
