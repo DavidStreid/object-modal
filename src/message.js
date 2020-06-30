@@ -22,7 +22,7 @@ function Message({update, onClose}) {
     const msg = update.msg;
     const key = msg;
 
-    let modalClass = 'modal';
+    let modalClass = 'object-modal';
     switch(type) {
         case MODAL_ERROR:
             modalClass += ' modal-fail';
@@ -47,7 +47,9 @@ function Message({update, onClose}) {
                 <a href="#"></a>
             </button>
         </div>
-        <p className="word-break">{msg}</p>
+        <div className={'modal-text-container'}>
+            <p className="word-break">{msg}</p>
+        </div>
     </div>;
 }
 

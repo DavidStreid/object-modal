@@ -1,6 +1,7 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import Message, {parseType} from './message';
+import './modal-container.css';
 
 export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';
@@ -15,6 +16,7 @@ function ModalContainer({modalUpdater}) {
     const key = evt.msg;
     const delay = evt.delay;
     const update = { ...queueRef.current, [key]: {...evt, closed: false} };
+    queueRef.current = update;
     setQueue(update);
 
     setTimeout(() => {
