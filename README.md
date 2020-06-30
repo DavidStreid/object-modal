@@ -5,7 +5,7 @@ This is a simple modal that takes in an object
 
 ## QuickStart
 ```
-import ModalContainer, {sendUpdate} from 'object-modal';
+import Modal, {sendUpdate} from "object-modal";
 
 function App() {
     ... 

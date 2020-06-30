@@ -1,6 +1,6 @@
 import React from 'react';
 import {act, render, fireEvent, waitForElementToBeRemoved} from '@testing-library/react';
-import Index, {sendUpdate} from './index';
+import ModalContainer, {sendUpdate} from './modal-container';
 import {Subject} from 'rxjs';
 import {MODAL_UPDATE} from './message';
 
@@ -10,14 +10,14 @@ beforeEach(() => {
 });
 
 test('No modal is rendered if an event is not published', async () => {
-  const { queryByTestId } = render(<Index modalUpdater={subj}/>);
+  const { queryByTestId } = render(<ModalContainer modalUpdater={subj}/>);
 
   // Modal on no-update should appear
   expect(queryByTestId('no-modal')).toBeTruthy();
 });
 
 test('A modal is rendered when a valid event is published', async () => {
-  const {queryByTestId} = render(<Index modalUpdater={subj}/>);
+  const {queryByTestId} = render(<ModalContainer modalUpdater={subj}/>);
   const delay = 100;
   act(() => {
     sendUpdate(subj, 'TEST-MODAL-UPDATE', MODAL_UPDATE, delay);
@@ -33,7 +33,7 @@ test('A modal is rendered when a valid event is published', async () => {
 
 test('A modal is removed after its delay expires', async () => {
   const delay = 100;
-  const {queryByTestId} = render(<Index modalUpdater={subj}/>);
+  const {queryByTestId} = render(<ModalContainer modalUpdater={subj}/>);
   act(() => {
     sendUpdate(subj, 'TEST-MODAL-UPDATE', MODAL_UPDATE, delay);
   });
@@ -54,7 +54,7 @@ test('Multiple modals are removed correctly', async () => {
   const shortMsg = 'TEST-MODAL-UPDATE-SHORT';
   const longMsg = 'TEST-MODAL-UPDATE-LONG';
 
-  const {queryByTestId, queryByText} = render(<Index modalUpdater={subj}/>);
+  const {queryByTestId, queryByText} = render(<ModalContainer modalUpdater={subj}/>);
   expect(queryByTestId('no-modal')).toBeTruthy();
 
   act(() => {
@@ -86,7 +86,7 @@ test('A closed modal is removed', async () => {
   const delay = 100;
   const closedMsg = 'TEST-MODAL-UPDATE-CLOSED';
 
-  const {queryByTestId, queryByText, queryByRole} = render(<Index modalUpdater={subj}/>);
+  const {queryByTestId, queryByText, queryByRole} = render(<ModalContainer modalUpdater={subj}/>);
   expect(queryByTestId('no-modal')).toBeTruthy();
 
   act(() => {

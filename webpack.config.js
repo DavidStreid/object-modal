@@ -1,4 +1,13 @@
+const path = require('path');
+
 module.exports = {
+    mode: 'production',
+    entry: './src/modal-container.js',
+    output: {
+        path: path.resolve('dist'),
+        filename: 'index.js',
+        libraryTarget: 'commonjs2',
+    },
     module: {
         rules: [
             {
@@ -9,5 +18,12 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    resolve: {
+        extensions: ['.js'],
+    },
+    externals: {
+        react: 'commonjs react',
+        'react-dom': 'commonjs react-dom'
+    },
 };

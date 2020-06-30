@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {MODAL_ERROR, MODAL_SUCCESS, MODAL_UPDATE} from './index';
+import {MODAL_ERROR, MODAL_SUCCESS, MODAL_UPDATE} from './modal-container';
 
 /**
  * Returns a valid modal type

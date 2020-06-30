@@ -6,7 +6,7 @@ export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';
 export const MODAL_UPDATE = 'MODAL_UPDATE';
 
-function Index({modalUpdater}) {
+function ModalContainer({modalUpdater}) {
   const [queue, setQueue] = useState({});
   const queueRef = useRef(queue);
   queueRef.current = queue;       // Inside of the subcription function to our input modalUpdater, we need a reference to this value
@@ -73,7 +73,7 @@ export function sendUpdate(subject, msg, inputType = MODAL_UPDATE, delay = 1000)
   const update = { msg, type, delay };
   subject.next(update);
 };
-export default Index;
-Index.propTypes = {
+export default ModalContainer;
+ModalContainer.propTypes = {
   modalUpdater: PropTypes.object  // Subject
 };
