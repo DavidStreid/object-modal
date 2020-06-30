@@ -16,6 +16,7 @@ function ModalContainer({modalUpdater}) {
     const key = evt.msg;
     const delay = evt.delay;
     const update = { ...queueRef.current, [key]: {...evt, closed: false} };
+    queueRef.current = update;
     setQueue(update);
 
     setTimeout(() => {
