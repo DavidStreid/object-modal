@@ -7,7 +7,7 @@ export const MODAL_ERROR = 'MODAL_ERROR';
 export const MODAL_SUCCESS = 'MODAL_SUCCESS';
 export const MODAL_UPDATE = 'MODAL_UPDATE';
 
-function ModalContainer({modalUpdater}) {
+function ModalContainer({modalUpdater, successColor, updateColor, errorColor}) {
   const [queue, setQueue] = useState({});
   const queueRef = useRef(queue);
   queueRef.current = queue;       // Inside of the subcription function to our input modalUpdater, we need a reference to this value
@@ -54,7 +54,10 @@ function ModalContainer({modalUpdater}) {
       const key = `${updateMsg}-${queue[updateMsg].type}`;
       return <Message key={key}
                       update={{...viewUpdate}}
-                      onClose={() => closeModal(updateMsg)}></Message>;
+                      onClose={() => closeModal(updateMsg)}
+                      successColor={successColor}
+                      updateColor={updateColor}
+                      errorColor={errorColor}></Message>;
     })}
   </div>);
 }

@@ -17,21 +17,21 @@ export function parseType(type) {
     return MODAL_UPDATE;
 }
 
-function Message({update, onClose}) {
+function Message({update, onClose, successColor = '#49A078', updateColor = '#006098', errorColor = '#C03B5A'}) {
     const type = parseType(update.type);
     const msg = update.msg;
     const key = msg;
 
-    let modalClass = 'object-modal';
+    let backgroundColor = '';
     switch(type) {
         case MODAL_ERROR:
-            modalClass += ' modal-fail';
+            backgroundColor = errorColor;
             break;
         case MODAL_UPDATE:
-            modalClass += ' modal-update';
+            backgroundColor = updateColor;
             break;
         case MODAL_SUCCESS:
-            modalClass += ' modal-success';
+            backgroundColor = successColor;
             break;
         default:
             throw new Error('Invalid modal update');
@@ -41,14 +41,14 @@ function Message({update, onClose}) {
         // User closed modal via onClick
         return <div key={key}></div>;
     }
-    return <div className={modalClass} key={key}>
+    return <div className={'object-modal'}
+                key={key}
+                style={ { background: backgroundColor } }>
         <div className={'close-container'}>
-            <button className="close" onClick={onClose}>
-                <a href="#"></a>
-            </button>
+            <button className="close" onClick={onClose}></button>
         </div>
         <div className={'modal-text-container'}>
-            <p className="word-break">{msg}</p>
+            <p className="word-break white-color">{msg}</p>
         </div>
     </div>;
 }

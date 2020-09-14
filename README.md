@@ -9,9 +9,9 @@ This is a simple modal that takes in an object
 
 `message` string
 
-`type` string, MODAL_UPDATE, MODAL_ERROR, MODAL_SUCCESS
+`type` (optional), string, MODAL_UPDATE, MODAL_ERROR, MODAL_SUCCESS 
 
-`delay` number
+`delay` (optional), number
 
 Submits an update using the input modal
 
@@ -38,6 +38,14 @@ function App() {
 }
 
 export default App;
+```
+
+### Customize colors
+```
+<Modal modalUpdater={modalUpdater}
+    successColor={'#49A078'}
+    updateColor={'#006098'}
+    errorColor={'#C03B5A'}/>
 ```
 
 ### Run w/ Redux
