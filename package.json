@@ -1,6 +1,6 @@
 {
   "name": "object-modal",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "private": false,
   "main": "dist/index.js",
   "peerDependencies": {
@@ -36,7 +36,8 @@
     "build": "webpack --mode production",
     "test": "react-scripts test --env=jsdom-fourteen",
     "lint": "./node_modules/.bin/eslint --fix .",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish": "npm run build && npm publish"
   },
   "eslintConfig": {
     "extends": "react-app"
